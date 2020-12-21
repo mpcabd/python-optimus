@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mpcabd/python-optimus.svg?branch=main)](https://travis-ci.org/mpcabd/python-optimus)
+[![Build Status](https://travis-ci.com/mpcabd/python-optimus.svg?branch=main)](https://travis-ci.com/mpcabd/python-optimus)
 
 # python-optimus
 This is based fully on [pjebs/optimus-go](https://github.com/pjebs/optimus-go) for Go which is based on [jenssegers/optimus](https://github.com/jenssegers/optimus) for PHP which is based on Knuth's Integer Hashing (Multiplicative Hashing) from his book [The Art Of Computer Programming, Vol. 3, 2nd Edition](https://archive.org/details/B-001-001-250/page/n535/mode/2up), Section 6.4, Page 516.
@@ -83,3 +83,8 @@ assert my_optimus.decode(my_other_optimus.encode(42)) == my_other_optimus.decode
     ├── ...
     └── p50.txt
 ```
+
+## License
+
+This work is licensed under
+[MIT License](https://opensource.org/licenses/MIT).
