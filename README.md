@@ -19,7 +19,7 @@ So far it's only tested on Python 3.8 and Python 3.9
 
 Basic usage:
 
-```
+```python
 from optimus_ids import Optimus
 my_optimus = Optimus(
     prime=<your prime number>
@@ -31,7 +31,7 @@ assert my_int_id == my_optimus.decode(my_int_id_hashed)
 
 The caveat with the usage above is that every time you create your `Optimus` instance it will have a random component, even with using the same prime, so a proper usage should be like this:
 
-```
+```python
 from optimus_ids import Optimus
 my_optimus = Optimus(
     prime=<your prime number>,
@@ -41,17 +41,18 @@ my_int_id = <some id you have>
 my_int_id_hashed = my_optimus.encode(my_int_id)
 assert my_int_id == my_optimus.decode(my_int_id_hashed)
 
-To generate a random number you could do this:
 ```
 
-```
+To generate a suitable random number you could do this:
+
+```python
 from optimus_ids import rand_n, MAX_64_INT  # use 32 instead of 64 if you want to
 my_random_number = rand_n(MAX_64_INT - 1)
 ```
 
-You can also generate an `Optimus` intance and then keep its `prime`, `inverese` and `random` properties stored, so you can always configure a new instance with the same components, or even pickle it:
+You can also generate an `Optimus` intance and then keep its `prime`, `inverse` and `random` properties stored, so you can always configure a new instance with the same components, or even pickle it:
 
-```
+```python
 from optimus_ids import generate, Optimus
 my_optimus = generate()
 
@@ -83,6 +84,8 @@ assert my_optimus.decode(my_other_optimus.encode(42)) == my_other_optimus.decode
     ├── ...
     └── p50.txt
 ```
+
+Check the [tests](tests/) folder for test cases and other usage examples.
 
 ## License
 
