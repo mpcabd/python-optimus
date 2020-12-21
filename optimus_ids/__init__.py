@@ -56,7 +56,7 @@ def generate(
     input_file = str(path_to_primes.joinpath(f'p{n}.txt').absolute())
     line_number = rand_n(1_000_000)
     with open(input_file, 'r') as f:
-        for i in range(line_number):
+        for i in range(1, line_number):
             f.readline()
         return Optimus(int(f.readline().strip()), bitlength=bitlength)
 
