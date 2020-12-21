@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mpcabd/python-optimus.svg?branch=main)](https://travis-ci.org/mpcabd/python-optimus)
+
 # python-optimus
 This is based fully on [pjebs/optimus-go](https://github.com/pjebs/optimus-go) for Go which is based on [jenssegers/optimus](https://github.com/jenssegers/optimus) for PHP which is based on Knuth's Integer Hashing (Multiplicative Hashing) from his book [The Art Of Computer Programming, Vol. 3, 2nd Edition](https://archive.org/details/B-001-001-250/page/n535/mode/2up), Section 6.4, Page 516.
 
