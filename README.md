@@ -3,7 +3,12 @@
 # python-optimus
 This is based fully on [pjebs/optimus-go](https://github.com/pjebs/optimus-go) for Go which is based on [jenssegers/optimus](https://github.com/jenssegers/optimus) for PHP which is based on Knuth's Integer Hashing (Multiplicative Hashing) from his book [The Art Of Computer Programming, Vol. 3, 2nd Edition](https://archive.org/details/B-001-001-250/page/n535/mode/2up), Section 6.4, Page 516.
 
-With this library, you can transform your internal id's to obfuscated integers based on Knuth's integer hash. It is similar to Hashids, but will generate integers instead of random strings. It is also super fast.
+With this library, you can transform your internal id's to obfuscated integers based on Knuth's integer hash. It is similar to [Hashids](https://hashids.org/), but will generate integers instead of random strings. It is also super fast.
+
+    >>> my_optimus.encode(42)
+    7773166408443174426
+    >>> my_optimus.decode(7773166408443174426)
+    42
 
 This library supports both 32 and 64 bits integers, although in Python you don't have that differentiation between int32 and int64, even bigint or bignum is the same since [PEP 237](https://www.python.org/dev/peps/pep-0237/). The reason you need a bitlength is that the algorithm itself works on a fixed bitlength. By default this library uses 64 bits.
 
