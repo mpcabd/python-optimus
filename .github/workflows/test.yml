@@ -37,6 +37,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
+
       - run: pip install poetry
       - run: poetry config experimental.new-installer false
 
