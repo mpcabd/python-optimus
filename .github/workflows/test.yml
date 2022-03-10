@@ -1,0 +1,63 @@
+name: tests
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: [main, ci/*]
+  pull_request:
+    branches: [main, ci/*]
+    paths:
+      - "applembic/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "poetry.lock"
+      - ".github/workflows/test.yml"
+
+jobs:
+  unit-tests:
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
+        os: [ubuntu-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            cache-path: ~/.cache/pypoetry/virtualenvs
+
+    name: Test ${{ matrix.os }} - Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        id: setup-python
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+      - run: pip install poetry
+      - run: poetry config experimental.new-installer false
+
+      - name: "Python dependencies cache"
+        id: cache-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ matrix.cache-path }}
+          key: ${{ runner.os }}-py-${{ steps.setup-python.outputs.python-version }}-poetry-${{ hashFiles('poetry.lock') }}
+          restore-keys: ${{ runner.os }}-py-${{ steps.setup-python.outputs.python-version }}-poetry-
+
+      - name: Install dependencies
+        run: poetry install
+        if: steps.cache-poetry-dependencies.outputs.cache-hit != 'true'
+
+      - name: pytest
+        run: poetry run pytest --cov-report xml --cov=. --showlocals -vv
+
+      - uses: codecov/codecov-action@v1
+        if: ${{ always() }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
+          verbose: true
