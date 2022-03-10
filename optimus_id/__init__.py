@@ -2,6 +2,7 @@ import secrets
 from pathlib import Path
 from typing import Union
 
+
 MAX_64_INT = 2**63 - 1
 MAX_32_INT = 2**31 - 1
 
