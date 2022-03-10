@@ -12,6 +12,7 @@ python = "^3.8"
 pytest = "^7.0.1"
 black = {version = "^22.1.0", allow-prereleases = true}
 pytest-emoji = "^0.2.0"
+pytest-cov = "^3.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
