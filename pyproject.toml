@@ -2,7 +2,7 @@
 name = "optimus-id"
 version = "0.2.1"
 description = "Transform internal id's to obfuscated integers using Knuth's integer hash"
-authors = ["Abdullah Diab <mpcabd@gmail.com>, gazorby <gazorby@pm.me>"]
+authors = ["gazorby <gazorby@pm.me>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
