@@ -56,6 +56,7 @@ jobs:
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
         run: |
+          git remote set-url origin https://${{ secrets.PUBLISH_TOKEN }}@github.com/${{ github.repository }}
           autopub prepare
           poetry build
           autopub commit
