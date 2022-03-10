@@ -1,4 +1,5 @@
 import secrets
+import sys
 from pathlib import Path
 from typing import Union
 
@@ -34,8 +35,27 @@ class Optimus:
         return ((n ^ self.random) * self.inverse) & self.max_int
 
 
-def mod_inverse(n: int, p: int) -> int:
-    return pow(n, -1, p + 1)
+# pow don't compute modular inverse on python <= 3.7, we need to do it manually
+if sys.version_info.major == 3 and sys.version_info.minor <= 7:
+
+    def egcd(n: int, p: int):
+        if n == 0:
+            return (p, 0, 1)
+        else:
+            g, y, x = egcd(p % n, n)
+            return (g, x - (p // n) * y, y)
+
+    def mod_inverse(n: int, p: int):
+        g, x, _ = egcd(n, p + 1)
+        if g != 1:
+            raise ValueError("modular inverse does not exist")
+        else:
+            return x % p
+
+else:
+
+    def mod_inverse(n: int, p: int) -> int:
+        return pow(n, -1, p + 1)
 
 
 def generate(
@@ -47,11 +67,13 @@ def generate(
         path_to_primes = Path(path_to_primes)
     if not (path_to_primes.exists() and path_to_primes.is_dir()):
         raise ValueError(f"{str(path_to_primes)} does not exist or is not a directory")
+
     n = rand_n(50)
     input_file = str(path_to_primes.joinpath(f"p{n}.txt").absolute())
     line_number = rand_n(1_000_000)
+
     with open(input_file, "r") as f:
-        for i in range(1, line_number):
+        for _ in range(1, line_number):
             f.readline()
         return Optimus(int(f.readline().strip()), bitlength=bitlength)
 
