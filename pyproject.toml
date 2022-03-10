@@ -44,4 +44,3 @@ sections = [
 git-username = "gazorby"
 git-email = "gazorby@pm.me"
 project-name = "optimus-id"
-append-github-contributor = true
