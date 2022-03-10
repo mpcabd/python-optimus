@@ -25,6 +25,8 @@ jobs:
         include:
           - os: ubuntu-latest
             cache-path: ~/.cache/pypoetry/virtualenvs
+          - os: windows-latest
+            cache-path: ~\AppData\Local\pypoetry\Cache
 
     name: Test ${{ matrix.os }} - Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
