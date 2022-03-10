@@ -54,9 +54,10 @@ jobs:
       - name: Publish
         if: steps.check_release.outputs.release == ''
         env:
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
         run: |
-          git remote set-url origin https://${{ secrets.PUBLISH_TOKEN }}@github.com/${{ github.repository }}
+          git remote set-url origin https://${{ secrets.BOT_TOKEN }}@github.com/${{ github.repository }}
           autopub prepare
           poetry build
           autopub commit
