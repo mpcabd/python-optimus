@@ -50,3 +50,5 @@ venv/
 .DS_Store
 
 optimus-primes/
+
+.tool-versions
