@@ -45,7 +45,7 @@ jobs:
           pip install poetry
           pip install githubrelease
           pip install "git+https://github.com/patrick91/autopub.git@fix/release-not-found#egg=autopub"
-          pip install httpx Cython
+          pip install httpx
       - name: Check if we should release
         id: check_release
         run: |
@@ -59,6 +59,7 @@ jobs:
         run: |
           git remote set-url origin https://${{ secrets.BOT_TOKEN }}@github.com/${{ github.repository }}
           autopub prepare
+          poetry run pip install Cython
           poetry build
           autopub commit
           autopub githubrelease
