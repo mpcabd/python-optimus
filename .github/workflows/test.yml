@@ -53,10 +53,9 @@ jobs:
 
       - name: Install dependencies
         run: poetry install
-        # if: steps.cache-poetry-dependencies.outputs.cache-hit != 'true'
 
       - name: pytest
-        run: poetry run pytest --cov-report xml --cov=. --showlocals -vv
+        run: poetry run pytest --showlocals -vv --cov-report xml --cov=optimus_id
 
       - uses: codecov/codecov-action@v1
         if: ${{ always() }}
