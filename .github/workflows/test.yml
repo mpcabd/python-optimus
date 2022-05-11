@@ -53,7 +53,7 @@ jobs:
 
       - name: Install dependencies
         run: poetry install
-        if: steps.cache-poetry-dependencies.outputs.cache-hit != 'true'
+        # if: steps.cache-poetry-dependencies.outputs.cache-hit != 'true'
 
       - name: pytest
         run: poetry run pytest --cov-report xml --cov=. --showlocals -vv
