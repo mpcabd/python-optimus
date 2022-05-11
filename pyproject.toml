@@ -13,10 +13,14 @@ pytest = "^7.0.1"
 black = {version = "^22.1.0", allow-prereleases = true}
 pytest-emoji = "^0.2.0"
 pytest-cov = "^3.0.0"
+Cython = "^0.29.28"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.0.0", "cython", "setuptools"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.build]
+script = "build.py"
 
 [tool.pytest.ini_options]
 addopts = "-s --emoji"
