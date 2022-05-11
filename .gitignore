@@ -52,3 +52,6 @@ venv/
 optimus-primes/
 
 .tool-versions
+
+optimus_id/*.c
+optimus_id/*.so
