@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Union
 
 
-cdef int _MAX_64_INT = 2**63 - 1
+cdef long int _MAX_64_INT = 2**63 - 1
 cdef int _MAX_32_INT = 2**31 - 1
 
 # Make them visible to python code
