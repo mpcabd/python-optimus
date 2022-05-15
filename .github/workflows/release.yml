@@ -48,7 +48,9 @@ jobs:
         python-version: '3.8'
 
     - name: Install
-      run: poetry run pip install Cython
+      run: |
+        pip install poetry
+        poetry run pip install Cython
 
     - name: Build sdist
       run: poetry build
